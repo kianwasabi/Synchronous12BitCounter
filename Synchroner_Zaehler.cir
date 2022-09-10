@@ -1,0 +1,24 @@
+* C:\Users\Besitzer\Documents\Studium\5.Semester\Synchroner_Zaehler.sch
+
+* Schematics Version 9.1 - Web Update 1
+* Tue Mar 16 01:41:27 2021
+
+
+
+** Analysis setup **
+.tran 1uS 160us
+.OPTIONS DIGINITSTATE=0
+.OP 
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "Synchroner_Zaehler.net"
+.INC "Synchroner_Zaehler.als"
+
+
+.probe
+
+
+.END

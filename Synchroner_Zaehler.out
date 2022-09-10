@@ -1,0 +1,457 @@
+
+**** 03/16/21 01:41:32 *********** Evaluation PSpice (Nov 1999) **************
+
+ * C:\Users\Besitzer\Documents\Studium\5.Semester\Synchroner_Zaehler.sch
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+* Schematics Version 9.1 - Web Update 1
+* Tue Mar 16 01:41:27 2021
+
+
+
+** Analysis setup **
+.tran 1uS 160us
+.OPTIONS DIGINITSTATE=0
+.OP 
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "Synchroner_Zaehler.net"
+
+**** INCLUDING Synchroner_Zaehler.net ****
+* Schematics Netlist *
+
+
+
+X_Und1A         Q_0 Q_1 $N_0001 $G_DPWR $G_DGND 7408 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+X_Und2A         Q_2 $N_0001 $N_0002 $G_DPWR $G_DGND 7408 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+X_Oder2A         $N_0001 Q_3 $N_0003 $G_DPWR $G_DGND 7432 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+X_Oder1A         $N_0004 $N_0005 $N_0006 $G_DPWR $G_DGND 7432 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+V_V5         $N_0007 0 5V
+X_D2A         Q_2 $N_0008 $G_DPWR $G_DGND 7405 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+X_D1A         Q_3 $N_0009 $G_DPWR $G_DGND 7405 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+X_D3A         Q_1 $N_0010 $G_DPWR $G_DGND 7405 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+X_U20         $N_0016 $N_0007 0 
++ $N_0011 $N_0012 $N_0013 $N_0014 $N_0009 $N_0008 $N_0010 $N_0015 $G_DPWR
++  $G_DGND DAC8break 
++PARAMS: MNTYMXDLY=0 IO_LEVEL=0
+X_D4A         Q_0 $N_0015 $G_DPWR $G_DGND 7405 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+R_R16         $N_0016 OUT  16  
+R_R17         $N_0016 OUT  16  
+X_Q0_A         $N_0018 $D_HI $D_HI $N_0006 $D_HI Q_0 $N_0021 $G_DPWR $G_DGND
++  7476 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+X_Q1_A         $N_0018 $D_HI $D_HI Q_0 Q_0 Q_1 $N_0022 $G_DPWR $G_DGND 7476
++  PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+X_Q2_A         $N_0018 $D_HI $D_HI $N_0001 $N_0003 Q_2 $N_0005 $G_DPWR $G_DGND
++  7476 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+X_Q3_A         $N_0018 $D_HI $D_HI $N_0002 Q_2 Q_3 $N_0004 $G_DPWR $G_DGND 7476
++  PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+R_R18         OUT 0  680  
+U_DSTM1         STIM(1,1) $G_DPWR $G_DGND $N_0018 IO_STM IO_LEVEL=0 
++ 0 0
++ +5uS 1
++REPEAT FOREVER
++ +5uS 0
++  +5uS 1
++ ENDREPEAT
+
+**** RESUMING Synchroner_Zaehler.cir ****
+.INC "Synchroner_Zaehler.als"
+
+
+
+**** INCLUDING Synchroner_Zaehler.als ****
+* Schematics Aliases *
+
+.ALIASES
+X_Und1A          Und1A(A=Q_0 B=Q_1 Y=$N_0001 PWR=$G_DPWR GND=$G_DGND )
+X_Und2A          Und2A(A=Q_2 B=$N_0001 Y=$N_0002 PWR=$G_DPWR GND=$G_DGND )
+X_Oder2A          Oder2A(A=$N_0001 B=Q_3 Y=$N_0003 PWR=$G_DPWR GND=$G_DGND )
+X_Oder1A          Oder1A(A=$N_0004 B=$N_0005 Y=$N_0006 PWR=$G_DPWR GND=$G_DGND
++  )
+V_V5            V5(+=$N_0007 -=0 )
+X_D2A           D2A(A=Q_2 Y=$N_0008 PWR=$G_DPWR GND=$G_DGND )
+X_D1A           D1A(A=Q_3 Y=$N_0009 PWR=$G_DPWR GND=$G_DGND )
+X_D3A           D3A(A=Q_1 Y=$N_0010 PWR=$G_DPWR GND=$G_DGND )
+X_U20           U20(OUT=$N_0016 REF=$N_0007 GND=0 DB7=$N_0011 DB6=$N_0012
++  DB5=$N_0013 DB4=$N_0014 DB3=$N_0009 DB2=$N_0008 DB1=$N_0010 DB0=$N_0015
++  DPWR=$G_DPWR DGND=$G_DGND )
+X_D4A           D4A(A=Q_0 Y=$N_0015 PWR=$G_DPWR GND=$G_DGND )
+R_R16           R16(1=$N_0016 2=OUT )
+R_R17           R17(1=$N_0016 2=OUT )
+X_Q0_A          Q0_A(CLK=$N_0018 PREbar=$D_HI CLRbar=$D_HI J=$N_0006 K=$D_HI
++  Q=Q_0 Qbar=$N_0021 PWR=$G_DPWR GND=$G_DGND )
+X_Q1_A          Q1_A(CLK=$N_0018 PREbar=$D_HI CLRbar=$D_HI J=Q_0 K=Q_0 Q=Q_1
++  Qbar=$N_0022 PWR=$G_DPWR GND=$G_DGND )
+X_Q2_A          Q2_A(CLK=$N_0018 PREbar=$D_HI CLRbar=$D_HI J=$N_0001 K=$N_0003
++  Q=Q_2 Qbar=$N_0005 PWR=$G_DPWR GND=$G_DGND )
+X_Q3_A          Q3_A(CLK=$N_0018 PREbar=$D_HI CLRbar=$D_HI J=$N_0002 K=Q_2
++  Q=Q_3 Qbar=$N_0004 PWR=$G_DPWR GND=$G_DGND )
+R_R18           R18(1=OUT 2=0 )
+U_DSTM1          DSTM1(PWR=$G_DPWR GND=$G_DGND 1=$N_0018 )
+_    _(Q_2=Q_2)
+_    _(Q_3=Q_3)
+_    _(Q_1=Q_1)
+_    _(Q_0=Q_0)
+_    _(OUT=OUT)
+_    _($G_DPWR=$G_DPWR)
+_    _($G_DGND=$G_DGND)
+.ENDALIASES
+
+
+**** RESUMING Synchroner_Zaehler.cir ****
+.probe
+
+
+.END
+
+WARNING -- Library file "C:\Program Files\OrCAD_Demo\Capture\Library\PSpice\nom.lib" has changed since index file nom.ind was created.
+WARNING -- The timestamp changed from Mon Apr 20 11:36:36 1998 to Mon Apr 20 09:36:36 1998.
+Making new index file nom.ind for library file nom.lib
+Index has 377 entries from 3 file(s).
+
+**** 03/16/21 01:41:32 *********** Evaluation PSpice (Nov 1999) **************
+
+ * C:\Users\Besitzer\Documents\Studium\5.Semester\Synchroner_Zaehler.sch
+
+
+ ****     Digital Input MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               (Dummy Digital Input Model) 
+        FILE DSO_DTOA        
+      FORMAT    6            
+    TIMESTEP  100.000000E-12 
+      S0NAME 0               
+       S0TSW   10.000000E-09 
+       S0RLO  100            
+       S0RHI  100            
+      S1NAME 1               
+       S1TSW   10.000000E-09 
+       S1RLO  100            
+       S1RHI  100            
+
+
+**** 03/16/21 01:41:32 *********** Evaluation PSpice (Nov 1999) **************
+
+ * C:\Users\Besitzer\Documents\Studium\5.Semester\Synchroner_Zaehler.sch
+
+
+ ****     Digital Gate MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               D_08            D_32            D_05            D0_GATE         
+      TPLHMN    7.000000E-09    4.000000E-09   16.000000E-09    0            
+      TPLHTY   17.500000E-09   10.000000E-09   40.000000E-09    0            
+      TPLHMX   27.000000E-09   15.000000E-09   55.000000E-09    0            
+      TPHLMN    4.800000E-09    5.600000E-09    3.200000E-09    0            
+      TPHLTY   12.000000E-09   14.000000E-09    8.000000E-09    0            
+      TPHLMX   19.000000E-09   22.000000E-09   15.000000E-09    0            
+
+
+**** 03/16/21 01:41:32 *********** Evaluation PSpice (Nov 1999) **************
+
+ * C:\Users\Besitzer\Documents\Studium\5.Semester\Synchroner_Zaehler.sch
+
+
+ ****     Digital Edge Triggered FF MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               D_76_0          D_76_1          
+  TPCLKQLHMN    0               6.400000E-09 
+  TPCLKQLHTY    0              16.000000E-09 
+  TPCLKQLHMX    0              25.000000E-09 
+  TPCLKQHLMN    0              10.000000E-09 
+  TPCLKQHLTY    0              25.000000E-09 
+  TPCLKQHLMX    0              40.000000E-09 
+   TPPCQLHMN    0               6.400000E-09 
+   TPPCQLHTY    0              16.000000E-09 
+   TPPCQLHMX    0              25.000000E-09 
+   TPPCQHLMN    0              10.000000E-09 
+   TPPCQHLTY    0              25.000000E-09 
+   TPPCQHLMX    0              40.000000E-09 
+    TWCLKLMN    0               0            
+    TWCLKLTY    0               0            
+    TWCLKLMX    0               0            
+    TWCLKHMN    0               0            
+    TWCLKHTY    0               0            
+    TWCLKHMX    0               0            
+     TWPCLMN    0               0            
+     TWPCLTY    0               0            
+     TWPCLMX    0               0            
+   TSUDCLKMN    0               0            
+   TSUDCLKTY    0               0            
+   TSUDCLKMX    0               0            
+ TSUPCCLKHMN    0               0            
+ TSUPCCLKHTY    0               0            
+ TSUPCCLKHMX    0               0            
+    THDCLKMN    0               0            
+    THDCLKTY    0               0            
+    THDCLKMX    0               0            
+  TSUCECLKMN    0               0            
+  TSUCECLKTY    0               0            
+  TSUCECLKMX    0               0            
+   THCECLKMN    0               0            
+   THCECLKTY    0               0            
+   THCECLKMX    0               0            
+
+
+**** 03/16/21 01:41:32 *********** Evaluation PSpice (Nov 1999) **************
+
+ * C:\Users\Besitzer\Documents\Studium\5.Semester\Synchroner_Zaehler.sch
+
+
+ ****     Digital to Analog Converter MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U20.DAC8_TIMING 
+       TSWMN   10.000000E-09 
+       TSWTY   10.000000E-09 
+       TSWMX   10.000000E-09 
+
+
+**** 03/16/21 01:41:32 *********** Evaluation PSpice (Nov 1999) **************
+
+ * C:\Users\Besitzer\Documents\Studium\5.Semester\Synchroner_Zaehler.sch
+
+
+ ****     Digital IO  MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               IO_STM          IO_STD          IO_STD_OC       
+        DRVL    0             104             104            
+        DRVH    0              96.4             1.000000E+06 
+       AtoD1                 AtoD_STD        AtoD_STD        
+       AtoD2                 AtoD_STD_NX     AtoD_STD_NX     
+       AtoD3                 AtoD_STD        AtoD_STD        
+       AtoD4                 AtoD_STD_NX     AtoD_STD_NX     
+       DtoA1 DtoA_STM        DtoA_STD        DtoA_STD_OC     
+       DtoA2 DtoA_STM        DtoA_STD        DtoA_STD_OC     
+       DtoA3 DtoA_STM        DtoA_STD        DtoA_STD_OC     
+       DtoA4 DtoA_STM        DtoA_STD        DtoA_STD_OC     
+      TSWHL1                    1.373000E-09    2.617000E-09 
+      TSWHL2                    1.346000E-09    2.598000E-09 
+      TSWHL3                    1.511000E-09    2.747000E-09 
+      TSWHL4                    1.487000E-09    2.732000E-09 
+      TSWLH1                    3.382000E-09    1.432000E-09 
+      TSWLH2                    3.424000E-09    1.460000E-09 
+      TSWLH3                    3.517000E-09    1.589000E-09 
+      TSWLH4                    3.564000E-09    1.615000E-09 
+       TPWRT  100.000000E+03  100.000000E+03  100.000000E+03 
+
+
+**** 03/16/21 01:41:32 *********** Evaluation PSpice (Nov 1999) **************
+
+ * C:\Users\Besitzer\Documents\Studium\5.Semester\Synchroner_Zaehler.sch
+
+
+ ****     SMALL SIGNAL BIAS SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(  OUT)    2.4613  ($N_0007)    5.0000                   ($N_0016)    2.4902    
+
+
+
+ DGTL NODE : STATE  DGTL NODE : STATE  DGTL NODE : STATE  DGTL NODE : STATE
+
+
+(X_Q1_A.CLRBAR_BUF) : 1               (X_Q1_A.Q2) : 0    (X_Q1_A.YB) : 1        
+
+(X_Q2_A.J_BUF) : 0                    (X_Q0_A.CLK_BUF) : 0                      
+
+( $N_0003) : 0     (X_Q3_A.CLK_BAR) : 1                  ( $N_0004) : 1         
+
+(X_Q0_A.CLRBAR_BUF) : 1               ( $N_0009) : Z     (X_Q2_A.Y) : 0         
+
+(X_Q2_A.CLK_BUF) : 0                  (     Q_3) : 0     (X_Q1_A.CLK_BAR) : 1   
+
+(     Q_0) : 0     (X_Q3_A.CLRBAR_BUF) : 1               ( $N_0010) : Z         
+
+(   $D_HI) : 1     (X_Q0_A.K_BUF) : 1                    ( $N_0015) : Z         
+
+(X_Q0_A.Q2) : 0    (X_Q0_A.PREBAR_BUF) : 1               (X_Q0_A.YB) : 1        
+
+(X_Q1_A.J_BUF) : 0                    (X_Q2_A.CLRBAR_BUF) : 1                   
+
+(X_Q3_A.QB2) : 1   (X_Q2_A.K_BUF) : 0                    ( $N_0021) : 1         
+
+( $N_0005) : 1     (X_Q3_A.Q2) : 0    (X_Q1_A.PREBAR_BUF) : 1                   
+
+( $N_0022) : 1     ( $N_0006) : 1     (X_Q3_A.YB) : 1    (X_Q3_A.J_BUF) : 0     
+
+(X_Q1_A.CLK_BUF) : 0                  (X_Q2_A.QB2) : 1   (X_Q1_A.Y) : 0         
+
+(     Q_1) : 0     ( $N_0011) : Z     (X_Q2_A.PREBAR_BUF) : 1                   
+
+( $N_0012) : Z     (X_Q3_A.CLK_BUF) : 0                  (X_Q2_A.CLK_BAR) : 1   
+
+(X_Q3_A.PREBAR_BUF) : 1               ( $N_0018) : 0     (X_Q1_A.QB2) : 1       
+
+(X_Q1_A.K_BUF) : 0                    ( $N_0001) : 0     (X_Q2_A.Q2) : 0        
+
+(X_Q0_A.CLK_BAR) : 1                  ( $N_0002) : 0     (X_Q2_A.YB) : 1        
+
+(X_Q3_A.Y) : 0     ( $N_0008) : Z     (X_Q3_A.K_BUF) : 0                        
+
+(     Q_2) : 0     (X_Q0_A.QB2) : 1   (X_Q0_A.Y) : 0     (X_Q0_A.J_BUF) : 1     
+
+( $N_0013) : Z     ( $N_0014) : Z     
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V5        -5.000E-12
+
+    TOTAL POWER DISSIPATION   2.50E-11  WATTS
+
+
+**** 03/16/21 01:41:32 *********** Evaluation PSpice (Nov 1999) **************
+
+ * C:\Users\Besitzer\Documents\Studium\5.Semester\Synchroner_Zaehler.sch
+
+
+ ****     OPERATING POINT INFORMATION      TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+
+**** 03/16/21 01:41:32 *********** Evaluation PSpice (Nov 1999) **************
+
+ * C:\Users\Besitzer\Documents\Studium\5.Semester\Synchroner_Zaehler.sch
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(  OUT)    2.4613  ($N_0007)    5.0000                   ($N_0016)    2.4902    
+
+
+
+ DGTL NODE : STATE  DGTL NODE : STATE  DGTL NODE : STATE  DGTL NODE : STATE
+
+
+(X_Q1_A.CLRBAR_BUF) : 1               (X_Q1_A.Q2) : 0    (X_Q1_A.YB) : 1        
+
+(X_Q2_A.J_BUF) : 0                    (X_Q0_A.CLK_BUF) : 0                      
+
+( $N_0003) : 0     (X_Q3_A.CLK_BAR) : 1                  ( $N_0004) : 1         
+
+(X_Q0_A.CLRBAR_BUF) : 1               ( $N_0009) : Z     (X_Q2_A.Y) : 0         
+
+(X_Q2_A.CLK_BUF) : 0                  (     Q_3) : 0     (X_Q1_A.CLK_BAR) : 1   
+
+(     Q_0) : 0     (X_Q3_A.CLRBAR_BUF) : 1               ( $N_0010) : Z         
+
+(   $D_HI) : 1     (X_Q0_A.K_BUF) : 1                    ( $N_0015) : Z         
+
+(X_Q0_A.Q2) : 0    (X_Q0_A.PREBAR_BUF) : 1               (X_Q0_A.YB) : 1        
+
+(X_Q1_A.J_BUF) : 0                    (X_Q2_A.CLRBAR_BUF) : 1                   
+
+(X_Q3_A.QB2) : 1   (X_Q2_A.K_BUF) : 0                    ( $N_0021) : 1         
+
+( $N_0005) : 1     (X_Q3_A.Q2) : 0    (X_Q1_A.PREBAR_BUF) : 1                   
+
+( $N_0022) : 1     ( $N_0006) : 1     (X_Q3_A.YB) : 1    (X_Q3_A.J_BUF) : 0     
+
+(X_Q1_A.CLK_BUF) : 0                  (X_Q2_A.QB2) : 1   (X_Q1_A.Y) : 0         
+
+(     Q_1) : 0     ( $N_0011) : Z     (X_Q2_A.PREBAR_BUF) : 1                   
+
+( $N_0012) : Z     (X_Q3_A.CLK_BUF) : 0                  (X_Q2_A.CLK_BAR) : 1   
+
+(X_Q3_A.PREBAR_BUF) : 1               ( $N_0018) : 0     (X_Q1_A.QB2) : 1       
+
+(X_Q1_A.K_BUF) : 0                    ( $N_0001) : 0     (X_Q2_A.Q2) : 0        
+
+(X_Q0_A.CLK_BAR) : 1                  ( $N_0002) : 0     (X_Q2_A.YB) : 1        
+
+(X_Q3_A.Y) : 0     ( $N_0008) : Z     (X_Q3_A.K_BUF) : 0                        
+
+(     Q_2) : 0     (X_Q0_A.QB2) : 1   (X_Q0_A.Y) : 0     (X_Q0_A.J_BUF) : 1     
+
+( $N_0013) : Z     ( $N_0014) : Z     
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V5        -5.000E-12
+
+    TOTAL POWER DISSIPATION   2.50E-11  WATTS
+
+
+
+          JOB CONCLUDED
+
+          TOTAL JOB TIME             .23
+
